@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "user_details")
@@ -21,9 +23,11 @@ public class User implements Serializable{
 	@GeneratedValue
 	private Long id;
 	
+	@NotEmpty(message="Username is Mandatory field. please provide Username")
 	@Column(name = "USER_NAME",length = 50,nullable = false,unique = true)
 	private String username;
 	
+	@Size(min = 2,message = "Firstname should have atleast 2 characters")
 	@Column(name = "FIRST_NAME",length = 50, nullable = false)
 	private String firstname;
 	

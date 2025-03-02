@@ -28,11 +28,13 @@ public class UserService {
 		if(optionalUser != null) {
 			throw new UserExistsException("Error occured while creating user");// TODO: handle exception
 		}
-		try {
+		//try {
 			return repository.save(user);
-		}catch (Exception e) {
-			throw new UserExistsException("Error occured while creating user");// TODO: handle exception
-		}
+			/*
+			 * }catch (Exception e) { throw new
+			 * UserExistsException("Error occured while creating user");// TODO: handle
+			 * exception }
+			 */
 	}
 	
 	public Optional<User> getUserById(Long id) throws UserNotFoundException{
