@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -35,18 +36,19 @@ import jakarta.validation.executable.ValidateOnExecution;
 
 @RestController
 @ValidateOnExecution
+@RequestMapping(value = "/users")
 public class UserController {
 	
 	@Autowired
 	private UserService service;
 	
-	@GetMapping(path="/users")
+	@GetMapping
 	private List<User> getAllUsers(){
 		return service.getAllUsers();
 	}
 	
 	
-	@GetMapping(path="/users/{id}")
+	@GetMapping(path="/{id}")
 	private User getUserById(@PathVariable("id") @Min(1)  Long id) {
 		try {
 		return service.getUserById(id).get();
@@ -55,7 +57,7 @@ public class UserController {
 		}
 	}
 	
-	@PostMapping(path="users")
+	@PostMapping
 	private ResponseEntity<Void> createUser(@Valid @RequestBody User user, UriComponentsBuilder builder) {
 
 		try {
@@ -69,7 +71,7 @@ public class UserController {
 	}
 
 	
-	@PutMapping(path="/users/{id}")
+	@PutMapping(path="/{id}")
 	private User updateUserById(@PathVariable("id") Long id,@RequestBody User user) {
 		
 		try {
@@ -79,7 +81,7 @@ public class UserController {
 		}
 	}
 	
-	@DeleteMapping(path="/users/{id}")
+	@DeleteMapping(path="/{id}")
 	private void  deleteUserById(@PathVariable("id") Long id) {
 		try {
 			service.deleteUserById(id);
@@ -88,7 +90,7 @@ public class UserController {
 		}
 	}
 	
-	@GetMapping(path="/users/byUsername/{username}")
+	@GetMapping(path="/byUsername/{username}")
 	private User findByUsername(@PathVariable("username") String username) throws UserNameNotFoundException {
 		User user = service.findByUserName(username);
 		if(user == null)
