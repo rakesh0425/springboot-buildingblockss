@@ -3,6 +3,8 @@ package com.stacksimpllify.restservices.springboot_buildingblock.entities;
 import java.io.Serializable;
 import java.util.List;
 
+import org.springframework.hateoas.RepresentationModel;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,7 +16,7 @@ import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "user_details")
-public class User implements Serializable{
+public class User extends RepresentationModel<User>{
 
 	/**
 	 * 
@@ -51,7 +53,12 @@ public class User implements Serializable{
 	public User() {
 	}
 
-	public User(long id, String username, String firstname, String lastname, String email, String role, String ssn) {
+
+
+	public User(Long id, @NotEmpty(message = "Username is Mandatory field. please provide Username") String username,
+			@Size(min = 2, message = "Firstname should have atleast 2 characters") String firstname, String lastname,
+			String email, String role, String ssn, List<Order> orders) {
+		super();
 		this.id = id;
 		this.username = username;
 		this.firstname = firstname;
@@ -59,7 +66,10 @@ public class User implements Serializable{
 		this.email = email;
 		this.role = role;
 		this.ssn = ssn;
+		this.orders = orders;
 	}
+
+
 
 	public long getId() {
 		return id;
