@@ -1,6 +1,6 @@
-insert into user_details values(101,'kreddy@stacksimplify.com', 'Kalyan', 'Reddy', 'admin', 'ssn101', 'kreddy');
-insert into user_details values(102,'gwiser@stacksimplify.com', 'Greg', 'Wiser', 'admin', 'ssn102', 'gwiser');
-insert into user_details values(103,'dmark@stacksimplify.com', 'David', 'Mark', 'admin', 'ssn103', 'dmark');
+insert into user_details values(101,'kreddy@stacksimplify.com', 'Kalyan', 'Reddy', 'admin', 'ssn101', 'kreddy','New York');
+insert into user_details values(102,'gwiser@stacksimplify.com', 'Greg', 'Wiser', 'admin', 'ssn102', 'gwiser','New Jersey');
+insert into user_details values(103,'dmark@stacksimplify.com', 'David', 'Mark', 'admin', 'ssn103', 'dmark','California');
 
 
 insert into orders values(2001,101,'order11');

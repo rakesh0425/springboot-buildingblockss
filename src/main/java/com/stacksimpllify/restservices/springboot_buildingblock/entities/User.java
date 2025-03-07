@@ -1,6 +1,5 @@
 package com.stacksimpllify.restservices.springboot_buildingblock.entities;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.hateoas.RepresentationModel;
@@ -65,15 +64,15 @@ public class User extends RepresentationModel<User>{
 	@OneToMany(mappedBy = "user")
 	@JsonView(Views.Internal.class)
 	private List<Order> orders;
+	
+	private String address;
 
 	public User() {
 	}
 
-
-
 	public User(Long id, @NotEmpty(message = "Username is Mandatory field. please provide Username") String username,
 			@Size(min = 2, message = "Firstname should have atleast 2 characters") String firstname, String lastname,
-			String email, String role, String ssn, List<Order> orders) {
+			String email, String role, String ssn, List<Order> orders, String address) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -83,7 +82,11 @@ public class User extends RepresentationModel<User>{
 		this.role = role;
 		this.ssn = ssn;
 		this.orders = orders;
+		this.address = address;
 	}
+
+
+
 
 
 
@@ -152,11 +155,25 @@ public class User extends RepresentationModel<User>{
 		this.orders = orders;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", firstname=" + firstname + ", lastname=" + lastname
-				+ ", email=" + email + ", role=" + role + ", ssn=" + ssn + "]";
+				+ ", email=" + email + ", role=" + role + ", ssn=" + ssn + ", orders=" + orders + ", address=" + address
+				+ "]";
 	}
+
 	
 	
 	
